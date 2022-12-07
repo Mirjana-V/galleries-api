@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use App\Models\Gallery;
+use App\Models\Comment;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -43,6 +45,14 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function galleries() {
+        return $this->hasMany(Gallery::class);
+    }
+
+    public function comment() {
+        return $this->hasMany(Comment::class);
+    }
 
     public function getJWTIdentifier()
     {
