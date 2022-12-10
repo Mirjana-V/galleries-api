@@ -16,8 +16,9 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::all();
-        return $galleries;
+        $query = Gallery::with('comments', 'user', 'images');
+        $galleries = $query->orderBy('id', 'desc')->paginate(10);
+        return response()->json($galleries);
     }
 
     /**
@@ -36,7 +37,7 @@ class GalleriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GalleryRequest $request)
+    public function store(CreateGalleryRequest $request)
     {
         $gallery = new Gallery();
         $gallery->title = $request->title;

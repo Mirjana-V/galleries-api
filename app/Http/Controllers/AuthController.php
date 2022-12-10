@@ -42,7 +42,7 @@ class AuthController extends Controller
             "email" => $validatedData['email'],
             "password" => $validatedData['password']
         ];
-
+        
         $token = Auth::attempt($credentials);
 
         if(!$token){
@@ -78,5 +78,11 @@ class AuthController extends Controller
         return response()->json([
             "status" => "success",
         ]);
+    }
+
+    public function getActiveUser(){
+        $activeUser = Auth::user();
+
+        return response()->json($activeUser);
     }
 }
