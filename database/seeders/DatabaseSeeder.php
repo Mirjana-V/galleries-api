@@ -21,17 +21,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call([
-        //     UserSeeder::class
-        // ]);
+        $this->call([
+            UserSeeder::class
+        ]);
 
-        // $this->call([
-        //     GalleriesSeeder::class
-        // ]);
+        $this->call([
+            GalleriesSeeder::class
+        ]);
 
-        // $this->call([
-        //     ImagesSeeder::class
-        // ]);
+        $this->call([
+            ImagesSeeder::class
+        ]);
 
         $this->call([
             CommentsSeeder::class
