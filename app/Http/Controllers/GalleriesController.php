@@ -14,10 +14,12 @@ class GalleriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $query = Gallery::with('comments', 'user', 'images');
-        $galleries = $query->orderBy('id', 'desc')->paginate(10);
+        $userId = $request->query('userId', '');
+        $term = $request->query('term', '');
+        $galleries = Gallery::searchByTerm($term, $userId)->latest()->paginate(10);
+
         return response()->json($galleries);
     }
 
